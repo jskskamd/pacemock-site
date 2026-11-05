@@ -13,6 +13,7 @@
 //     topic: "M1 Units",                       // optional: short code, then the name, for the results
 //     marks: 3,                                // optional weight, otherwise 1. Scores are scaled to the test's outOf
 //     solution: "Worked answer",               // optional, shown after the test
+//     solutionTyped: "solutions/x-typed.jpg",  // optional typed worked solution, shown above the handwritten one
 //     solutionImage: "solutions/x.jpg",        // optional, shown instead of solution, which then becomes its alt text
 //   },
 const TESTS = {
@@ -31,7 +32,8 @@ const TESTS = {
         answer: 4,
         topic: "M5 Geometry",
         marks: 5,
-        solutionImage: "solutions/m1v3-q01.jpg",
+        solutionTyped: "solutions/m1v4t-q01.jpg",
+        solutionImage: "solutions/m1v4-q01.jpg",
         solution: "Answer E: 70°",
       },
       {
@@ -40,7 +42,8 @@ const TESTS = {
         answer: 2,
         topic: "M2 Number",
         marks: 2,
-        solutionImage: "solutions/m1v3-q02.jpg",
+        solutionTyped: "solutions/m1v4t-q02.jpg",
+        solutionImage: "solutions/m1v4-q02.jpg",
         solution: "Answer C: 5 × 10⁴",
       },
       {
@@ -49,7 +52,8 @@ const TESTS = {
         answer: 1,
         topic: "M2 Number",
         marks: 6,
-        solutionImage: "solutions/m1v3-q03.jpg",
+        solutionTyped: "solutions/m1v4t-q03.jpg",
+        solutionImage: "solutions/m1v4-q03.jpg",
         solution: "Answer B: 92/49",
       },
       {
@@ -58,7 +62,8 @@ const TESTS = {
         answer: 1,
         topic: "M2 Number",
         marks: 3,
-        solutionImage: "solutions/m1v3-q04.jpg",
+        solutionTyped: "solutions/m1v4t-q04.jpg",
+        solutionImage: "solutions/m1v4-q04.jpg",
         solution: "Answer B: 4",
       },
       {
@@ -67,7 +72,8 @@ const TESTS = {
         answer: 1,
         topic: "M3 Ratio and proportion",
         marks: 2,
-        solutionImage: "solutions/m1v3-q05.jpg",
+        solutionTyped: "solutions/m1v4t-q05.jpg",
+        solutionImage: "solutions/m1v4-q05.jpg",
         solution: "Answer B: 33⅓%",
       },
       {
@@ -76,7 +82,8 @@ const TESTS = {
         answer: 5,
         topic: "M5 Geometry",
         marks: 10,
-        solutionImage: "solutions/m1v3-q06.jpg",
+        solutionTyped: "solutions/m1v4t-q06.jpg",
+        solutionImage: "solutions/m1v4-q06.jpg",
         solution: "Answer F: 32",
       },
       {
@@ -85,7 +92,8 @@ const TESTS = {
         answer: 1,
         topic: "M1 Units",
         marks: 3,
-        solutionImage: "solutions/m1v3-q07.jpg",
+        solutionTyped: "solutions/m1v4t-q07.jpg",
+        solutionImage: "solutions/m1v4-q07.jpg",
         solution: "Answer B: 5 m/s",
       },
       {
@@ -94,7 +102,8 @@ const TESTS = {
         answer: 3,
         topic: "M2 Number",
         marks: 5,
-        solutionImage: "solutions/m1v3-q08.jpg",
+        solutionTyped: "solutions/m1v4t-q08.jpg",
+        solutionImage: "solutions/m1v4-q08.jpg",
         solution: "Answer D: 34√5",
       },
       {
@@ -103,7 +112,8 @@ const TESTS = {
         answer: 1,
         topic: "M3 Ratio and proportion",
         marks: 2,
-        solutionImage: "solutions/m1v3-q09.jpg",
+        solutionTyped: "solutions/m1v4t-q09.jpg",
+        solutionImage: "solutions/m1v4-q09.jpg",
         solution: "Answer B: 84",
       },
       {
@@ -112,7 +122,8 @@ const TESTS = {
         answer: 3,
         topic: "M4 Algebra",
         marks: 6,
-        solutionImage: "solutions/m1v3-q10.jpg",
+        solutionTyped: "solutions/m1v4t-q10.jpg",
+        solutionImage: "solutions/m1v4-q10.jpg",
         solution: "Answer D: 99",
       },
       {
@@ -121,7 +132,8 @@ const TESTS = {
         answer: 3,
         topic: "M1 Units",
         marks: 2,
-        solutionImage: "solutions/m1v3-q11.jpg",
+        solutionTyped: "solutions/m1v4t-q11.jpg",
+        solutionImage: "solutions/m1v4-q11.jpg",
         solution: "Answer D: 1 200 N/m²",
       },
       {
@@ -130,7 +142,8 @@ const TESTS = {
         answer: 4,
         topic: "M3 Ratio and proportion",
         marks: 3,
-        solutionImage: "solutions/m1v3-q12.jpg",
+        solutionTyped: "solutions/m1v4t-q12.jpg",
+        solutionImage: "solutions/m1v4-q12.jpg",
         solution: "Answer E: increases by 56.25%",
       },
       {
@@ -141,7 +154,8 @@ const TESTS = {
         answer: 2,
         topic: "M5 Geometry",
         marks: 7,
-        solutionImage: "solutions/m1v3-q13.jpg",
+        solutionTyped: "solutions/m1v4t-q13.jpg",
+        solutionImage: "solutions/m1v4-q13.jpg",
         solution: "Answer C: 36π(2 + √5) cm²",
       },
       {
@@ -150,7 +164,8 @@ const TESTS = {
         answer: 0,
         topic: "M4 Algebra",
         marks: 2,
-        solutionImage: "solutions/m1v3-q14.jpg",
+        solutionTyped: "solutions/m1v4t-q14.jpg",
+        solutionImage: "solutions/m1v4-q14.jpg",
         solution: "Answer A: 1/(x + 1)",
       },
       {
@@ -159,7 +174,8 @@ const TESTS = {
         answer: 3,
         topic: "M4 Algebra",
         marks: 4,
-        solutionImage: "solutions/m1v3-q15.jpg",
+        solutionTyped: "solutions/m1v4t-q15.jpg",
+        solutionImage: "solutions/m1v4-q15.jpg",
         solution: "Answer D: 343",
       },
       {
@@ -168,7 +184,8 @@ const TESTS = {
         answer: 1,
         topic: "M3 Ratio and proportion",
         marks: 2,
-        solutionImage: "solutions/m1v3-q16.jpg",
+        solutionTyped: "solutions/m1v4t-q16.jpg",
+        solutionImage: "solutions/m1v4-q16.jpg",
         solution: "Answer B: 1 : 25 000",
       },
       {
@@ -177,7 +194,8 @@ const TESTS = {
         answer: 5,
         topic: "M4 Algebra",
         marks: 7,
-        solutionImage: "solutions/m1v3-q17.jpg",
+        solutionTyped: "solutions/m1v4t-q17.jpg",
+        solutionImage: "solutions/m1v4-q17.jpg",
         solution: "Answer F: 4√5",
       },
       {
@@ -186,7 +204,8 @@ const TESTS = {
         answer: 2,
         topic: "M4 Algebra",
         marks: 5,
-        solutionImage: "solutions/m1v3-q18.jpg",
+        solutionTyped: "solutions/m1v4t-q18.jpg",
+        solutionImage: "solutions/m1v4-q18.jpg",
         solution: "Answer C: 250/3",
       },
       {
@@ -195,7 +214,8 @@ const TESTS = {
         answer: 4,
         topic: "M2 Number",
         marks: 2,
-        solutionImage: "solutions/m1v3-q19.jpg",
+        solutionTyped: "solutions/m1v4t-q19.jpg",
+        solutionImage: "solutions/m1v4-q19.jpg",
         solution: "Answer E: 55/36",
       },
       {
@@ -206,7 +226,8 @@ const TESTS = {
         answer: 3,
         topic: "M5 Geometry",
         marks: 6,
-        solutionImage: "solutions/m1v3-q20.jpg",
+        solutionTyped: "solutions/m1v4t-q20.jpg",
+        solutionImage: "solutions/m1v4-q20.jpg",
         solution: "Answer D: 10(√3 + 1) m",
       },
       {
@@ -215,7 +236,8 @@ const TESTS = {
         answer: 0,
         topic: "M4 Algebra",
         marks: 3,
-        solutionImage: "solutions/m1v3-q21.jpg",
+        solutionTyped: "solutions/m1v4t-q21.jpg",
+        solutionImage: "solutions/m1v4-q21.jpg",
         solution: "Answer A: x = (4y + 2)/(y − 3)",
       },
       {
@@ -224,7 +246,8 @@ const TESTS = {
         answer: 3,
         topic: "M5 Geometry",
         marks: 5,
-        solutionImage: "solutions/m1v3-q22.jpg",
+        solutionTyped: "solutions/m1v4t-q22.jpg",
+        solutionImage: "solutions/m1v4-q22.jpg",
         solution: "Answer D: 36√2 cm³",
       },
       {
@@ -233,7 +256,8 @@ const TESTS = {
         answer: 2,
         topic: "M3 Ratio and proportion",
         marks: 2,
-        solutionImage: "solutions/m1v3-q23.jpg",
+        solutionTyped: "solutions/m1v4t-q23.jpg",
+        solutionImage: "solutions/m1v4-q23.jpg",
         solution: "Answer C: 19.2%",
       },
       {
@@ -242,7 +266,8 @@ const TESTS = {
         answer: 2,
         topic: "M4 Algebra",
         marks: 3,
-        solutionImage: "solutions/m1v3-q24.jpg",
+        solutionTyped: "solutions/m1v4t-q24.jpg",
+        solutionImage: "solutions/m1v4-q24.jpg",
         solution: "Answer C: 8",
       },
       {
@@ -253,7 +278,8 @@ const TESTS = {
         answer: 4,
         topic: "M5 Geometry",
         marks: 7,
-        solutionImage: "solutions/m1v3-q25.jpg",
+        solutionTyped: "solutions/m1v4t-q25.jpg",
+        solutionImage: "solutions/m1v4-q25.jpg",
         solution: "Answer E: 3 : 4",
       },
       {
@@ -262,7 +288,8 @@ const TESTS = {
         answer: 2,
         topic: "M2 Number",
         marks: 4,
-        solutionImage: "solutions/m1v3-q26.jpg",
+        solutionTyped: "solutions/m1v4t-q26.jpg",
+        solutionImage: "solutions/m1v4-q26.jpg",
         solution: "Answer C: 12",
       },
       {
@@ -271,7 +298,8 @@ const TESTS = {
         answer: 2,
         topic: "M5 Geometry",
         marks: 2,
-        solutionImage: "solutions/m1v3-q27.jpg",
+        solutionTyped: "solutions/m1v4t-q27.jpg",
+        solutionImage: "solutions/m1v4-q27.jpg",
         solution: "Answer C: 9π cm²",
       },
       {
@@ -280,7 +308,8 @@ const TESTS = {
         answer: 3,
         topic: "M5 Geometry",
         marks: 5,
-        solutionImage: "solutions/m1v3-q28.jpg",
+        solutionTyped: "solutions/m1v4t-q28.jpg",
+        solutionImage: "solutions/m1v4-q28.jpg",
         solution: "Answer D: 152 cm³",
       },
       {
@@ -289,7 +318,8 @@ const TESTS = {
         answer: 2,
         topic: "M2 Number",
         marks: 2,
-        solutionImage: "solutions/m1v3-q29.jpg",
+        solutionTyped: "solutions/m1v4t-q29.jpg",
+        solutionImage: "solutions/m1v4-q29.jpg",
         solution: "Answer C: 252",
       },
       {
@@ -298,7 +328,8 @@ const TESTS = {
         answer: 1,
         topic: "M4 Algebra",
         marks: 3,
-        solutionImage: "solutions/m1v3-q30.jpg",
+        solutionTyped: "solutions/m1v4t-q30.jpg",
+        solutionImage: "solutions/m1v4-q30.jpg",
         solution: "Answer B: 20 m/s",
       },
     ],

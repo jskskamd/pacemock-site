@@ -440,6 +440,13 @@ function reviewItem(q, index) {
   options.append(...q.options.map((option, i) => reviewOption(q, chosen, i, option)));
   item.append(options);
 
+  if (q.solutionTyped) {
+    const typed = element("img", "solution-sheet solution-typed");
+    typed.src = q.solutionTyped;
+    typed.alt = `Typed worked solution for question ${index + 1}`;
+    typed.loading = "lazy";
+    item.append(typed);
+  }
   if (q.solutionImage) {
     const sheet = element("img", "solution-sheet");
     sheet.src = q.solutionImage;

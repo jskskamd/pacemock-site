@@ -511,6 +511,8 @@ sup { font-size: 0.72em; line-height: 0; }
 
 .solution-sheet { display: block; width: 100%; max-width: 760px; height: auto; margin-top: 16px; border-radius: 12px; }
 
+.solution-typed { padding: 10px; background: #fff; border: 1px solid var(--bar-line); }
+
 .solution { margin-top: 16px; padding: 14px 16px; background: var(--hover); border-radius: 12px; white-space: pre-line; }
 
 .solution strong { display: block; margin-bottom: 4px; }
