@@ -1,9 +1,11 @@
-// The admin panel: every account, with a switch for each paid mock.
+// The admin panel: every account, with one switch for each paid mock.
+// Mock 2 is sold as one bundle (math2 + crit2), so its switch opens or closes every part.
 // The database checks that the signed-in account is an admin (supabase/admin.sql),
 // so this page is only a view: for anyone else the calls are refused.
 
 const $ = (id) => document.getElementById(id);
 let mocks = [];
+let bundles = [];
 let users = [];
 let canManage = false;
 let payments = [];
@@ -26,7 +28,7 @@ function tiles() {
   const finished = users.reduce((all, u) => all + u.finished, 0);
   const list = [
     ["Accounts", users.length, `${users.filter((u) => u.verified).length} verified`],
-    ["Paid mocks", mocks.length, mocks.map((m) => m.id).join(", ") || "none yet"],
+    ["Paid mocks", bundles.length, bundles.map((b) => b.title).join(", ") || "none yet"],
     ["Unlocks", unlocks, `${users.filter((u) => u.unlocked.length).length} accounts with a paid mock`],
     ["Mocks finished", finished, "by all accounts"],
   ];
@@ -37,17 +39,35 @@ function tiles() {
   }));
 }
 
-async function setAccess(user, mock, box) {
-  box.disabled = true;
-  const { error } = await db.rpc("admin_set_access", { target: user.id, mock: mock.id, allow: box.checked });
-  box.disabled = false;
-  if (error) {
-    box.checked = !box.checked;
-    $("saved").textContent = `Couldn't save: ${error.message}`;
-    return;
+// Paid mocks grouped by number: math2 and crit2 are both Mock 2
+function groupBundles() {
+  const byNumber = new Map();
+  for (const mock of mocks) {
+    const n = numberOf(mock.id);
+    if (!byNumber.has(n)) byNumber.set(n, { title: `Mock ${n}`, ids: [] });
+    byNumber.get(n).ids.push(mock.id);
   }
-  user.unlocked = box.checked ? [...user.unlocked, mock.id] : user.unlocked.filter((id) => id !== mock.id);
-  $("saved").textContent = `${mock.title} ${box.checked ? "unlocked for" : "locked for"} ${user.email}.`;
+  return [...byNumber.values()];
+}
+
+const hasBundle = (user, bundle) => bundle.ids.every((id) => user.unlocked.includes(id));
+
+async function setAccess(user, bundle, box) {
+  const allow = box.checked;
+  // Only the parts that need changing, so a half-unlocked mock gets completed
+  const change = bundle.ids.filter((id) => user.unlocked.includes(id) !== allow);
+  box.disabled = true;
+  const results = await Promise.all(change.map((id) => db.rpc("admin_set_access", { target: user.id, mock: id, allow })));
+  box.disabled = false;
+  const done = change.filter((_, i) => !results[i].error);
+  user.unlocked = allow ? [...user.unlocked, ...done] : user.unlocked.filter((id) => !done.includes(id));
+  const failed = results.find((r) => r.error);
+  if (failed) {
+    box.checked = hasBundle(user, bundle);
+    $("saved").textContent = `Couldn't save: ${failed.error.message}`;
+  } else {
+    $("saved").textContent = `${bundle.title} ${allow ? "unlocked for" : "locked for"} ${user.email}.`;
+  }
   tiles();
 }
 
@@ -293,8 +313,8 @@ function rows() {
     who.append(element("strong", "", user.email));
     who.append(element("span", "", `${user.verified ? "Verified" : "Not verified"} · joined ${shortDate(user.created_at)} · last login ${shortDate(user.last_sign_in_at)}`));
     row.append(who, element("td", "", user.finished ? `${user.finished} · avg ${user.average}` : "–"));
-    for (const mock of mocks) {
-      row.append(toggle(user.unlocked.includes(mock.id), !user.verified, `${mock.title} for ${user.email}`, (box) => setAccess(user, mock, box)));
+    for (const bundle of bundles) {
+      row.append(toggle(hasBundle(user, bundle), !user.verified, `${bundle.title} for ${user.email}`, (box) => setAccess(user, bundle, box)));
     }
     // Only the owner can change admins, and the owner's own switch stays on
     row.append(toggle(user.admin, !canManage || !user.verified || user.owner, `${user.email} is an admin`, (box) => setAdmin(user, box)));
@@ -303,7 +323,7 @@ function rows() {
   if (!shown.length) {
     const row = document.createElement("tr");
     const cell = element("td", "", "No accounts match.");
-    cell.colSpan = 3 + mocks.length;
+    cell.colSpan = 3 + bundles.length;
     row.append(cell);
     $("admin-rows").replaceChildren(row);
   }
@@ -322,13 +342,14 @@ function rows() {
     return;
   }
   mocks = data.mocks;
+  bundles = groupBundles();
   users = data.users;
   canManage = data.can_manage;
   if (!canManage) $("saved").textContent = "Newest accounts first. Only the owner can add or remove admins.";
   $("message").hidden = true;
   $("admin-body").hidden = false;
   const head = document.createElement("tr");
-  head.append(element("th", "", "Account"), element("th", "", "Mocks done"), ...mocks.map((m) => element("th", "", m.title)), element("th", "", "Admin"));
+  head.append(element("th", "", "Account"), element("th", "", "Mocks done"), ...bundles.map((b) => element("th", "", b.title)), element("th", "", "Admin"));
   $("admin-head").replaceChildren(head);
   tiles();
   rows();
